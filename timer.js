@@ -1,5 +1,11 @@
 #!/usr/bin/env node
-let seconds = 0;
+let seconds = 0,
+    error = false;
+
+// Make sure a time value is between 0 and 59
+function validateTimeRange(time) {
+  return (time >= 0 && time <= 59);
+}
 
 // Add up seconds from arguments
 process.argv.forEach((arg, index) => {
@@ -23,6 +29,10 @@ process.argv.forEach((arg, index) => {
     case 'mins':
     case 'minute':
     case 'minutes':
+      if (!validateTimeRange(number)) {
+        console.log(`Invalid argument "${number}${unit}": Minutes have to be between 0 and 59`);
+        error = true;
+      }
       seconds += number * 60;
       break;
 
@@ -31,6 +41,10 @@ process.argv.forEach((arg, index) => {
     case 'secs':
     case 'second':
     case 'seconds':
+      if (!validateTimeRange(number)) {
+        console.log(`Invalid argument "${number}${unit}": Seconds have to be between 0 and 59`);
+        error = true;
+      }
       seconds += number;
       break;
 
@@ -40,6 +54,11 @@ process.argv.forEach((arg, index) => {
       break;
   }
 })
+
+if (error) {
+  // Stop script if there is an error with the arguments
+  return;
+}
 
 let currentHour = 0,
     currentMinute = 0,
