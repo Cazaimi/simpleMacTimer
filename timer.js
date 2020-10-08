@@ -60,12 +60,11 @@ if (error) {
   return;
 }
 
-let currentHour = 0,
-    currentMinute = 0,
+function main () {
+  var currentMinute = 0,
     currentSecond = 1; // We need to start at 1, otherwise the timer won't match up with the timeout
 
-function main () {
-  let timer = setTimer();
+  let timer = setTimer(currentSecond, currentMinute);
 
   return setTimeout(function () {
     clearInterval(timer);
@@ -78,7 +77,7 @@ function toTwoDigit(num){
   return num > 9 ? num: "0" + num;
 }
 
-function printTime () {
+function printTime (currentHour, currentMinute, currentSecond) {
   console.clear();
   console.log('Time (hh:mm:ss): ' + toTwoDigit(currentHour) + ':' + toTwoDigit(currentMinute % 60) + ':' + toTwoDigit(currentSecond % 60));
 }
@@ -88,12 +87,12 @@ function printEndMessage () {
   console.log('Time\'s up!');
 }
 
-function setTimer () {
+var setTimer = function (currentSecond, currentMinute) {
   return setInterval(function () {
     currentMinute = Math.floor(currentSecond / 60);
     currentHour = Math.floor(currentMinute / 60);
     
-    printTime();
+    printTime(currentHour, currentMinute, currentSecond);
 
     currentSecond++;
   }, 1000);
