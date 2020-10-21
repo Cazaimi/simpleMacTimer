@@ -4,16 +4,16 @@ let minutes = Number(process.argv[2]),
     currentMinute = 0,
     currentSecond = 0,
     paused = false,
-    standard_input = process.stdin;
+    standard_input = process.stdin,
+    timer;
 
-standard_input.setEncoding('utf-8');
 standard_input.on('data', function (data) {
   pause();
 });
 
 function main () {
-  let timer = setTimer();
-  setTimeout(function(){runTimer()},1000);
+  timer = setTimer();
+  setTimeout(function() { runTimer() }, 1000);
 }
 
 function printTime () {
@@ -54,7 +54,7 @@ function checkAndEndTimer() {
   }
 }
 
-function runTimer (timer) {
+function runTimer () {
   return setTimeout(function () {
     clearInterval(timer);
   }, 1000);
