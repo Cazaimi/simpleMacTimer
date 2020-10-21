@@ -47,7 +47,7 @@ function setTimer () {
   }, 1000);
 }
 
-function endTimer() {
+function checkAndEndTimer() {
   if (currentMinute >= minutes) {
     printEndMessage();
     process.exit();
