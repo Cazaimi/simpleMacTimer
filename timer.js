@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 let minutes = Number(process.argv[2]),
-currentMinute = 0,
-currentSecond = 0,
-paused = false,
-standard_input = process.stdin;
+    currentMinute = 0,
+    currentSecond = 0,
+    paused = false,
+    standard_input = process.stdin;
 
 standard_input.setEncoding('utf-8');
 standard_input.on('data', function (data) {
