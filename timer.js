@@ -12,8 +12,7 @@ standard_input.on('data', function (data) {
 });
 
 function main () {
-  timer = setTimer();
-  setTimeout(function() { runTimer() }, 1000);
+  setTimer();
 }
 
 function printTime () {
@@ -36,9 +35,7 @@ function printEndMessage () {
 function setTimer () {
   return setInterval(function () {
     currentMinute = Math.floor(currentSecond / 60);
-    if (paused) {
-      printPaused();
-    } else {
+    if (!paused) {
       printTime();
       currentSecond++;
     }
@@ -54,14 +51,9 @@ function checkAndEndTimer() {
   }
 }
 
-function runTimer () {
-  return setTimeout(function () {
-    clearInterval(timer);
-  }, 1000);
-}
-
 function pause () {
   paused = !paused;
+  if (paused) printPaused();
 }
 
 main();
