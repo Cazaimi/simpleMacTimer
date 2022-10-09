@@ -8,4 +8,17 @@ afplay /System/Library/Sounds/Glass.aiff
 
 sleep 1
 
-say "The timer is up, take a break\!"
+defaultMessage="The timer is up, take a break\!"
+storedMessage=`cat config.txt`
+message=""
+
+if [ -z "$storedMessage" ];
+then
+    message=$defaultMessage
+else
+    message=$storedMessage
+fi
+
+echo $message
+
+say $message
