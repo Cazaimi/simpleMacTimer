@@ -2,9 +2,9 @@
 
 direction=`cat config.txt`
 
-node timer.js $1 $direction
+node ./src/timer.js $1 $direction
 
-osascript Timer.scpt
+osascript ./apple/Timer.scpt
 
 afplay /System/Library/Sounds/Glass.aiff
 
