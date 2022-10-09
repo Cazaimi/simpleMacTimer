@@ -45,4 +45,10 @@ Demo:
 
 ## Customization
 
-- Open the file `<repo_folder>/timer` and edit line #11 to customize your timer message.
+
+### Setting a custom announcement
+
+1. Run the command: `bash setup.sh`
+2. Enter the command you wish to be announced
+3. Press Return/Enter
+4. The next time the timer is run, your custom command will be announced.
