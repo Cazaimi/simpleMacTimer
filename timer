@@ -1,6 +1,8 @@
 #!/bin/bash
 
-node timer.js $1
+direction=`cat config.txt`
+
+node timer.js $1 $direction
 
 osascript Timer.scpt
 
@@ -9,7 +11,7 @@ afplay /System/Library/Sounds/Glass.aiff
 sleep 1
 
 defaultMessage="The timer is up, take a break\!"
-storedMessage=`cat config.txt`
+storedMessage=`cat message.txt`
 message=""
 
 if [ -z "$storedMessage" ];

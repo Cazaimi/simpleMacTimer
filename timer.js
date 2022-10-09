@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 let minutes = Number(process.argv[2]),
+    direction = Number(process.argv[3] ? Number(process.argv[3]) : 0)
     currentMinute = 0,
-    currentSecond = 0;
+    currentSecond = setSecondsBasedOnDirection();
 
+function setSecondsBasedOnDirection() {
+  return direction == 0 ? 0 : minutes * 60
+}
 function main () {
   let timer = setTimer();
 
@@ -30,7 +34,7 @@ function setTimer () {
     
     printTime();
 
-    currentSecond++;
+    direction == 0 ? currentSecond++ : currentSecond--;
   }, 1000);
 }
 
